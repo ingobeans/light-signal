@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cy2wl3j46mb38"]
+
+[ext_resource type="Material" uid="uid://dgyhn0a0mrg1k" path="res://water.tres" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://lv42lhw2ydrd" path="res://lighthouse.tscn" id="2_fj7yv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_bottom_color = Color(0.22486642, 0.5635004, 0.81770706, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_f3sb7"]
+sky_material = SubResource("ProceduralSkyMaterial_gv5m4")
+
+[sub_resource type="Environment" id="Environment_fj7yv"]
+background_mode = 2
+sky = SubResource("Sky_f3sb7")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_fj7yv"]
+material = ExtResource("1_f3sb7")
+size = Vector3(1000, 50, 1000)
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fj7yv")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.9999756, 0.0065174787, -0.002501826, 0, 0.35836798, 0.9335804, 0.006981165, 0.9335576, -0.35835925, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WaterPlane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25, 0)
+mesh = SubResource("BoxMesh_fj7yv")
+
+[node name="lighthouse" parent="." instance=ExtResource("2_fj7yv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.129053, 0)
