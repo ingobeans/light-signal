@@ -37,7 +37,39 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"Door": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/door.tres",
+"use_external/path": "uid://dh30dtleudw7o"
+},
+"Railing": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/railing.tres",
+"use_external/path": "uid://byegimafwq3ng"
+},
+"Windows": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/windows.tres",
+"use_external/path": "uid://bhfyn03piu47a"
+}
+},
+"nodes": {
+"PATH:Cylinder": {
+"import/skip_import": true
+},
+"PATH:Cylinder_001": {
+"import/skip_import": true
+},
+"PATH:Hall": {
+"import/skip_import": true
+},
+"PATH:Hall_002": {
+"import/skip_import": true
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

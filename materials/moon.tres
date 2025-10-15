@@ -7,6 +7,6 @@ transparency = 1
 cull_mode = 2
 shading_mode = 0
 disable_fog = true
-albedo_color = Color(1, 1, 1, 0.5568628)
+albedo_color = Color(1, 1, 1, 0.30980393)
 albedo_texture = ExtResource("1_3aiid")
 billboard_keep_scale = true
