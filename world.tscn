@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cy2wl3j46mb38"]
+[gd_scene load_steps=17 format=3 uid="uid://cy2wl3j46mb38"]
 
 [ext_resource type="Material" uid="uid://dgyhn0a0mrg1k" path="res://materials/water.tres" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://lv42lhw2ydrd" path="res://lighthouse.tscn" id="2_fj7yv"]
@@ -7,13 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://c6k4l6xto7yhp" path="res://assets/light.png" id="5_dwbse"]
 [ext_resource type="Script" uid="uid://feckn7f3pmud" path="res://addons/decal_compatibility/decal_compatibility.gd" id="6_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://bcwiimrhjd786" path="res://player.tscn" id="7_pkg7o"]
+[ext_resource type="Material" uid="uid://ck5pls7d355lb" path="res://materials/moon.tres" id="8_ioo17"]
+[ext_resource type="Texture2D" uid="uid://c8fnvcwpk8rci" path="res://assets/moon.png" id="9_wse8f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
 sky_top_color = Color(0.11526693, 0.14677623, 0.18874761, 1)
 sky_horizon_color = Color(0.080914624, 0.16108462, 0.21573517, 1)
 ground_bottom_color = Color(0.013747141, 0.10703788, 0.17917842, 1)
 ground_horizon_color = Color(0.06817835, 0.12480412, 0.19852415, 1)
-sun_angle_max = 177.72
+sun_angle_max = 0.0
 sun_curve = 0.021949844
 
 [sub_resource type="Sky" id="Sky_f3sb7"]
@@ -49,6 +51,9 @@ shader_parameter/fade_power = 1.0
 [sub_resource type="BoxMesh" id="BoxMesh_ioo17"]
 material = SubResource("ShaderMaterial_gbfbk")
 size = Vector3(2, 2, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ic0uy"]
+material = ExtResource("8_ioo17")
 
 [node name="World" type="Node3D"]
 
@@ -99,3 +104,14 @@ metadata/_custom_type_script = "uid://feckn7f3pmud"
 
 [node name="Player" parent="." instance=ExtResource("7_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.50567, -12.712697)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(47.57735, 25.090624, 14.095178, -28.778698, 41.480175, 23.302347, 0, -27.23368, 48.478287, 183.50224, 435.77383, -238.20702)
+mesh = SubResource("PlaneMesh_ic0uy")
+skeleton = NodePath("../Sprite3D")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(55.60412, 0, 0, 0, 55.60412, 0, 0, 0, 55.60412, 183.50224, 435.77383, -238.20702)
+visible = false
+billboard = 1
+texture = ExtResource("9_wse8f")
