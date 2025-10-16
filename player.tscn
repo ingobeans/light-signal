@@ -8,11 +8,11 @@ height = 1.7
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
-speed = 6.0
+speed = 4.0
 acceleration = 62.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_sh265")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6180533, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6937206, 0)

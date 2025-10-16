@@ -88,7 +88,7 @@ mesh = SubResource("BoxMesh_fj7yv")
 [node name="terrain" parent="." instance=ExtResource("3_tlwt5")]
 
 [node name="DecalCompatibility" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -2.4789138, 13.784684, -1.5127908)
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, -2.4789138, 12.986398, -2.085691)
 cast_shadow = 0
 gi_lightmap_scale = 0
 mesh = SubResource("BoxMesh_ioo17")
@@ -119,4 +119,4 @@ visible = false
 omni_range = 11.797906
 
 [node name="lighthouse" parent="." instance=ExtResource("9_ioo17")]
-transform = Transform3D(-0.7298761, 0, -0.68357944, 0, 1, 0, 0.68357944, 0, -0.7298761, 2.0926018, 13.439885, -0.40401793)
+transform = Transform3D(-0.7298761, 0, -0.68357944, 0, 1, 0, 0.68357944, 0, -0.7298761, 2.0926018, 13.769504, -0.40401793)
