@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cy2wl3j46mb38"]
+[gd_scene load_steps=20 format=3 uid="uid://cy2wl3j46mb38"]
 
 [ext_resource type="Material" uid="uid://dgyhn0a0mrg1k" path="res://materials/water.tres" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://b0a1lhqp83jnt" path="res://terrain.tscn" id="3_tlwt5"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bkgo7roekjh08" path="res://assets/lighthouse.blend" id="9_ioo17"]
 [ext_resource type="Script" uid="uid://cd3k8v7x72efj" path="res://message_area.gd" id="10_ic0uy"]
 [ext_resource type="PackedScene" uid="uid://cdfprdecnhm28" path="res://ui.tscn" id="10_wse8f"]
+[ext_resource type="PackedScene" uid="uid://dta6hkxb0rjrm" path="res://assets/boat.blend" id="11_ic0uy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
 sky_top_color = Color(0.11526693, 0.14677623, 0.18874761, 1)
@@ -130,3 +131,6 @@ text = "the door is locked"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorLocked"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2645874, 0.6815796, 0.11523414)
 shape = SubResource("BoxShape3D_k3n1d")
+
+[node name="boat" parent="." instance=ExtResource("11_ic0uy")]
+transform = Transform3D(0.94274634, 0, 0.3335107, 0, 1, 0, -0.3335107, 0, 0.94274634, 20.205772, 2.6761436, -3.9597685)
