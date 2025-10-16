@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdfprdecnhm28"]
+
+[ext_resource type="Script" uid="uid://6pqkqbs1q31h" path="res://ui.gd" id="1_fyqef"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_fyqef")
+
+[node name="Dialogue" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_left = 0.323
+anchor_top = 0.86800003
+anchor_right = 0.70000005
+anchor_bottom = 0.95300007
+offset_left = -3.0960083
+offset_top = -1.4639893
+offset_right = 1.5999756
+offset_bottom = 3.4559326
+
+[node name="White" type="ColorRect" parent="Dialogue"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.924
+offset_left = -2.9999847
+offset_top = -3.000023
+offset_right = 2.0
+offset_bottom = 1.5599747
+
+[node name="Black" type="ColorRect" parent="Dialogue"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.924
+offset_left = -1.9999847
+offset_top = -2.000023
+offset_right = 1.0
+offset_bottom = 0.5599747
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Dialogue"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.78300005
+offset_left = 1.0
+offset_top = -1.0
+offset_bottom = 0.019996643
+text = "the door is locked."
+horizontal_alignment = 1
