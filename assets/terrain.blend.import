@@ -46,6 +46,9 @@ _subresources={
 }
 },
 "nodes": {
+"PATH:BunkerInterior": {
+"import/skip_import": true
+},
 "PATH:Cube": {
 "import/skip_import": true
 },
