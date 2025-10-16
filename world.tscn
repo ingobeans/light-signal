@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://cy2wl3j46mb38"]
 
 [ext_resource type="Material" uid="uid://dgyhn0a0mrg1k" path="res://materials/water.tres" id="1_f3sb7"]
-[ext_resource type="PackedScene" uid="uid://b0a1lhqp83jnt" path="res://terrain.tscn" id="3_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://dthw12hveqhf0" path="res://assets/terrain.blend" id="1_ic0uy"]
 [ext_resource type="Shader" uid="uid://foqf6idimvb0" path="res://addons/decal_compatibility/decal.gdshader" id="4_dwbse"]
 [ext_resource type="Texture2D" uid="uid://c6k4l6xto7yhp" path="res://assets/light.png" id="5_dwbse"]
 [ext_resource type="Script" uid="uid://feckn7f3pmud" path="res://addons/decal_compatibility/decal_compatibility.gd" id="6_pkg7o"]
@@ -41,7 +41,7 @@ size = Vector3(5000, 50, 5000)
 render_priority = 0
 shader = ExtResource("4_dwbse")
 shader_parameter/albedo = ExtResource("5_dwbse")
-shader_parameter/modulate = Color(0.36215705, 0.4245598, 0.4485951, 1)
+shader_parameter/modulate = Color(0.21333516, 0.25707933, 0.27345204, 1)
 shader_parameter/albedo_mix = 1.0
 shader_parameter/scale_mod = Vector3(0.5, 0.5, 0.5)
 shader_parameter/cube_half_size = Vector3(1, 1, 1)
@@ -61,6 +61,8 @@ material = ExtResource("8_ioo17")
 size = Vector3(1.5291748, 2.8739014, 1.2304688)
 
 [node name="World" type="Node3D"]
+
+[node name="terrain" parent="." instance=ExtResource("1_ic0uy")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fj7yv")
@@ -90,8 +92,6 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22.815, 0)
 mesh = SubResource("BoxMesh_fj7yv")
 
-[node name="terrain" parent="." instance=ExtResource("3_tlwt5")]
-
 [node name="DecalCompatibility" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, -2.4789138, 12.986398, -2.085691)
 cast_shadow = 0
@@ -100,12 +100,12 @@ mesh = SubResource("BoxMesh_ioo17")
 Skeleton = null
 script = ExtResource("6_pkg7o")
 texture = ExtResource("5_dwbse")
-modulate = Color(0.36215705, 0.4245598, 0.4485951, 1)
+modulate = Color(0.21333516, 0.25707933, 0.27345204, 1)
 enable_fade = false
 metadata/_custom_type_script = "uid://feckn7f3pmud"
 
 [node name="Player" parent="." instance=ExtResource("7_pkg7o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.50567, -12.712697)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.800627, 3.263107, -13.230761)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(47.57735, 25.090624, 14.095178, -28.778698, 41.480175, 23.302347, 0, -27.23368, 48.478287, 183.50224, 435.77383, -238.20702)
@@ -133,4 +133,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2645874, 0.6815796, 0.11523
 shape = SubResource("BoxShape3D_k3n1d")
 
 [node name="boat" parent="." instance=ExtResource("11_ic0uy")]
-transform = Transform3D(0.94274634, 0, 0.3335107, 0, 1, 0, -0.3335107, 0, 0.94274634, 20.205772, 2.6761436, -3.9597685)
+transform = Transform3D(0.6920038, 0, 0.24480674, 0, 0.73402965, 0, -0.24480674, 0, 0.6920038, 25.899847, 2.6761436, -11.033203)
