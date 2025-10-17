@@ -29,6 +29,7 @@ sky = SubResource("Sky_f3sb7")
 tonemap_mode = 2
 fog_enabled = true
 fog_light_color = Color(0.012673886, 0.044830896, 0.117291994, 1)
+fog_density = 0.0315
 fog_aerial_perspective = 0.086
 adjustment_enabled = true
 adjustment_brightness = 0.91

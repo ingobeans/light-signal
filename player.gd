@@ -29,10 +29,16 @@ var jump_vel: Vector3
 func _ready() -> void:
 	capture_mouse()
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("release"):
+		release_mouse()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		look_dir = event.relative * 0.001
 		if mouse_captured: _rotate_camera()
+	elif event is InputEventMouseButton:
+		capture_mouse()
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"): jumping = true
