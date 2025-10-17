@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cy2wl3j46mb38"]
+[gd_scene load_steps=25 format=3 uid="uid://cy2wl3j46mb38"]
 
 [ext_resource type="Material" uid="uid://dgyhn0a0mrg1k" path="res://materials/water.tres" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://dthw12hveqhf0" path="res://assets/terrain.blend" id="1_ic0uy"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://cdfprdecnhm28" path="res://ui.tscn" id="10_wse8f"]
 [ext_resource type="PackedScene" uid="uid://dta6hkxb0rjrm" path="res://assets/boat.blend" id="11_ic0uy"]
 [ext_resource type="PackedScene" uid="uid://du2gy7wd3tsj" path="res://elevator.tscn" id="12_k3n1d"]
+[ext_resource type="Texture2D" uid="uid://dvbwfoga1fv0b" path="res://assets/puddle.png" id="13_2o6r5"]
+[ext_resource type="PackedScene" uid="uid://dpeb8gsl3wykv" path="res://assets/desk.blend" id="14_70uel"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
 sky_top_color = Color(0.11526693, 0.14677623, 0.18874761, 1)
@@ -61,6 +63,23 @@ material = ExtResource("8_ioo17")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k3n1d"]
 size = Vector3(1.5291748, 2.8739014, 1.2304688)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_70uel"]
+render_priority = 0
+shader = ExtResource("4_dwbse")
+shader_parameter/albedo = ExtResource("13_2o6r5")
+shader_parameter/modulate = Color(0.2520276, 0.25202766, 0.25202763, 1)
+shader_parameter/albedo_mix = 0.3
+shader_parameter/scale_mod = Vector3(0.5, 0.5, 0.5)
+shader_parameter/cube_half_size = Vector3(1, 1, 1)
+shader_parameter/enable_y_fade = false
+shader_parameter/fade_start = 0.3
+shader_parameter/fade_end = 0.7
+shader_parameter/fade_power = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_hiqwa"]
+material = SubResource("ShaderMaterial_70uel")
+size = Vector3(2, 2, 2)
 
 [node name="World" type="Node3D"]
 
@@ -139,3 +158,25 @@ transform = Transform3D(0.6920038, 0, 0.24480674, 0, 0.73402965, 0, -0.24480674,
 
 [node name="Elevator" parent="." instance=ExtResource("12_k3n1d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0856986, 9.65258, 41.291042)
+
+[node name="Puddle" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.322415, 0, 0, 0, 3.322415, 0, 0, 0, 3.322415, 0.82743573, 11.360923, 38.437805)
+cast_shadow = 0
+gi_lightmap_scale = 0
+mesh = SubResource("BoxMesh_hiqwa")
+Skeleton = null
+script = ExtResource("6_pkg7o")
+texture = ExtResource("13_2o6r5")
+modulate = Color(0.2520276, 0.25202766, 0.25202763, 1)
+albedo_mix = 0.3
+enable_fade = false
+metadata/_custom_type_script = "uid://feckn7f3pmud"
+
+[node name="desk" parent="." instance=ExtResource("14_70uel")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.5741434, 10.633667, 32.186836)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="desk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3404274, 1.0928974, 0.056365013)
+light_color = Color(0.39778644, 0.6244334, 0.4484111, 1)
+light_energy = 0.505
+omni_range = 3.339

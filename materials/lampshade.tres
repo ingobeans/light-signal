@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b3x0kcj1newdw"]
+
+[ext_resource type="Texture2D" uid="uid://be0ay4c84o803" path="res://assets/lampshade.png" id="1_c5ewf"]
+
+[resource]
+albedo_texture = ExtResource("1_c5ewf")
+roughness = 0.0
+emission_enabled = true
+emission_energy_multiplier = 0.63
+emission_texture = ExtResource("1_c5ewf")
+refraction_scale = 1.0
