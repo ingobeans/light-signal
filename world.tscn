@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://cd3k8v7x72efj" path="res://message_area.gd" id="10_ic0uy"]
 [ext_resource type="PackedScene" uid="uid://cdfprdecnhm28" path="res://ui.tscn" id="10_wse8f"]
 [ext_resource type="PackedScene" uid="uid://dta6hkxb0rjrm" path="res://assets/boat.blend" id="11_ic0uy"]
-[ext_resource type="PackedScene" uid="uid://b8nc7f082tnhj" path="res://assets/elevator.blend" id="12_k3n1d"]
+[ext_resource type="PackedScene" uid="uid://du2gy7wd3tsj" path="res://elevator.tscn" id="12_k3n1d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
 sky_top_color = Color(0.11526693, 0.14677623, 0.18874761, 1)
@@ -137,5 +137,5 @@ shape = SubResource("BoxShape3D_k3n1d")
 [node name="boat" parent="." instance=ExtResource("11_ic0uy")]
 transform = Transform3D(0.6920038, 0, 0.24480674, 0, 0.73402965, 0, -0.24480674, 0, 0.6920038, 25.899847, 2.6761436, -11.033203)
 
-[node name="elevator" parent="." instance=ExtResource("12_k3n1d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0814953, 9.642415, 41.27658)
+[node name="Elevator" parent="." instance=ExtResource("12_k3n1d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0856986, 9.65258, 41.291042)
