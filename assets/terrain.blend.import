@@ -46,6 +46,9 @@ _subresources={
 }
 },
 "nodes": {
+"PATH:BunkerBasementInterior": {
+"import/skip_import": true
+},
 "PATH:BunkerInterior": {
 "import/skip_import": true
 },
@@ -56,6 +59,9 @@ _subresources={
 "import/skip_import": true
 },
 "PATH:DoorHole": {
+"import/skip_import": true
+},
+"PATH:ElevatorHole": {
 "import/skip_import": true
 }
 }
