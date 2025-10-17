@@ -54,6 +54,9 @@ _subresources={
 },
 "PATH:Cylinder": {
 "import/skip_import": true
+},
+"PATH:DoorHole": {
+"import/skip_import": true
 }
 }
 }
