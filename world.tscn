@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cy2wl3j46mb38"]
+[gd_scene load_steps=26 format=3 uid="uid://cy2wl3j46mb38"]
 
 [ext_resource type="Material" uid="uid://dgyhn0a0mrg1k" path="res://materials/water.tres" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://dthw12hveqhf0" path="res://assets/terrain.blend" id="1_ic0uy"]
@@ -81,6 +81,9 @@ shader_parameter/fade_power = 1.0
 material = SubResource("ShaderMaterial_70uel")
 size = Vector3(2, 2, 2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_70uel"]
+size = Vector3(1.0822144, 8.434479, 4.035758)
+
 [node name="World" type="Node3D"]
 
 [node name="terrain" parent="." instance=ExtResource("1_ic0uy")]
@@ -126,6 +129,9 @@ enable_fade = false
 metadata/_custom_type_script = "uid://feckn7f3pmud"
 
 [node name="Player" parent="." instance=ExtResource("7_pkg7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7260542, 14.539789, 27.348488)
+
+[node name="Player2" parent="." instance=ExtResource("7_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.800627, 3.263107, -13.230761)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -179,4 +185,10 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3404274, 1.0928974, 0.056365013)
 light_color = Color(0.39778644, 0.6244334, 0.4484111, 1)
 light_energy = 0.505
-omni_range = 3.339
+
+[node name="AntiFallInHole" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.189254, 10.077022, 41.33598)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AntiFallInHole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4553094, 1.9827604, -0.16113663)
+shape = SubResource("BoxShape3D_70uel")

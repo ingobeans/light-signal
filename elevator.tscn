@@ -1,7 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://du2gy7wd3tsj"]
+[gd_scene load_steps=12 format=3 uid="uid://du2gy7wd3tsj"]
 
 [ext_resource type="Script" uid="uid://b2sxc2gdqkr5a" path="res://elevator.gd" id="1_pc862"]
 [ext_resource type="PackedScene" uid="uid://b8nc7f082tnhj" path="res://assets/elevator.blend" id="1_uuuf0"]
+[ext_resource type="AudioStream" uid="uid://cpax4bwy3ohlj" path="res://assets/elevator.mp3" id="3_a1q2r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a1q2r"]
+size = Vector3(1, 2.2124023, 1.1703796)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_77yi3"]
+size = Vector3(2.8796387, 3.8759766, 3.6353073)
 
 [sub_resource type="Animation" id="Animation_a1q2r"]
 length = 0.001
@@ -106,6 +113,35 @@ aabb = AABB(-0.11769739, -0.14014548, -0.1055862, 0.17094165, 0.20216596, 0.1545
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4590306, 2.0783656, 1.4737985)
 light_color = Color(0.9549411, 0.46268594, 0, 1)
 light_energy = 0.075
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MovingElevator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30135036, -0.09752703)
+stream = ExtResource("3_a1q2r")
+
+[node name="Area3D" type="Area3D" parent="MovingElevator"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovingElevator/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40985823, 2.0422845, 0.8219149)
+shape = SubResource("BoxShape3D_a1q2r")
+
+[node name="Cage" type="StaticBody3D" parent="MovingElevator"]
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="MovingElevator/Cage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44708967, 2.9298482, -3.730946)
+shape = SubResource("BoxShape3D_77yi3")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="MovingElevator/Cage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44708967, 2.9298482, 3.5289505)
+shape = SubResource("BoxShape3D_77yi3")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="MovingElevator/Cage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4183009, 2.9298482, -0.113048315)
+shape = SubResource("BoxShape3D_77yi3")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="MovingElevator/Cage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3311467, 2.9298482, -0.113048315)
+shape = SubResource("BoxShape3D_77yi3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../MovingElevator")
