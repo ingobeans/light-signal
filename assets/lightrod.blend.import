@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dta6hkxb0rjrm"
-path="res://.godot/imported/boat.blend-5dc934308b420611a77e8d883f45b9e0.scn"
+uid="uid://oduuilv6yrak"
+path="res://.godot/imported/lightrod.blend-b510ca2e91a26a966f2311dfdaf63f7d.scn"
 
 [deps]
 
-source_file="res://assets/boat.blend"
-dest_files=["res://.godot/imported/boat.blend-5dc934308b420611a77e8d883f45b9e0.scn"]
+source_file="res://assets/lightrod.blend"
+dest_files=["res://.godot/imported/lightrod.blend-b510ca2e91a26a966f2311dfdaf63f7d.scn"]
 
 [params]
 
@@ -37,13 +37,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"nodes": {
-"PATH:Plane": {
-"import/skip_import": true
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

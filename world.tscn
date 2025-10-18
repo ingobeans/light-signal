@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cy2wl3j46mb38"]
+[gd_scene load_steps=29 format=3 uid="uid://cy2wl3j46mb38"]
 
 [ext_resource type="Material" uid="uid://dgyhn0a0mrg1k" path="res://materials/water.tres" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://dthw12hveqhf0" path="res://assets/terrain.blend" id="1_ic0uy"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://du2gy7wd3tsj" path="res://elevator.tscn" id="12_k3n1d"]
 [ext_resource type="Texture2D" uid="uid://dvbwfoga1fv0b" path="res://assets/puddle.png" id="13_2o6r5"]
 [ext_resource type="PackedScene" uid="uid://dpeb8gsl3wykv" path="res://assets/desk.blend" id="14_70uel"]
+[ext_resource type="PackedScene" uid="uid://bwqn8mr4o26uw" path="res://lightrod.tscn" id="15_hiqwa"]
+[ext_resource type="LightmapGIData" uid="uid://bedbh1u81fwmk" path="res://world.lmbake" id="16_2u3nc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
 sky_top_color = Color(0.11526693, 0.14677623, 0.18874761, 1)
@@ -37,8 +39,12 @@ fog_aerial_perspective = 0.086
 adjustment_enabled = true
 adjustment_brightness = 0.91
 
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_2u3nc"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_fj7yv"]
+lightmap_size_hint = Vector2i(1, 1)
 material = ExtResource("1_f3sb7")
+add_uv2 = true
 size = Vector3(5000, 50, 5000)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gbfbk"]
@@ -69,12 +75,12 @@ render_priority = 0
 shader = ExtResource("4_dwbse")
 shader_parameter/albedo = ExtResource("13_2o6r5")
 shader_parameter/modulate = Color(0.2520276, 0.25202766, 0.25202763, 1)
-shader_parameter/albedo_mix = 0.3
+shader_parameter/albedo_mix = 0.2
 shader_parameter/scale_mod = Vector3(0.5, 0.5, 0.5)
 shader_parameter/cube_half_size = Vector3(1, 1, 1)
 shader_parameter/enable_y_fade = false
-shader_parameter/fade_start = 0.3
-shader_parameter/fade_end = 0.7
+shader_parameter/fade_start = 0.44
+shader_parameter/fade_end = 1.0
 shader_parameter/fade_power = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_hiqwa"]
@@ -86,10 +92,15 @@ size = Vector3(1.0822144, 8.434479, 4.035758)
 
 [node name="World" type="Node3D"]
 
+[node name="LightmapGI" type="LightmapGI" parent="."]
+quality = 3
+light_data = ExtResource("16_2u3nc")
+
 [node name="terrain" parent="." instance=ExtResource("1_ic0uy")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fj7yv")
+camera_attributes = SubResource("CameraAttributesPractical_2u3nc")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.9999757, 0.006517478, -0.0025018258, -0.006908147, -0.9754891, 0.21993989, -0.0010070514, 0.21995163, 0.9755103, 0, 0, 0)
@@ -128,10 +139,10 @@ modulate = Color(0.21333516, 0.25707933, 0.27345204, 1)
 enable_fade = false
 metadata/_custom_type_script = "uid://feckn7f3pmud"
 
-[node name="Player" parent="." instance=ExtResource("7_pkg7o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7260542, 14.539789, 27.348488)
-
 [node name="Player2" parent="." instance=ExtResource("7_pkg7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7260542, 13.325123, 27.348488)
+
+[node name="Player" parent="." instance=ExtResource("7_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.800627, 3.263107, -13.230761)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -166,7 +177,7 @@ transform = Transform3D(0.6920038, 0, 0.24480674, 0, 0.73402965, 0, -0.24480674,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0856986, 9.65258, 41.291042)
 
 [node name="Puddle" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.322415, 0, 0, 0, 3.322415, 0, 0, 0, 3.322415, 0.82743573, 11.360923, 38.437805)
+transform = Transform3D(3.322415, 0, 0, 0, 3.322415, 0, 0, 0, 3.322415, -2.0808098, 11.360923, 36.09305)
 cast_shadow = 0
 gi_lightmap_scale = 0
 mesh = SubResource("BoxMesh_hiqwa")
@@ -178,13 +189,29 @@ albedo_mix = 0.3
 enable_fade = false
 metadata/_custom_type_script = "uid://feckn7f3pmud"
 
+[node name="Puddle2" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.1238575, 0, -2.554931, 0, 3.322415, 0, 2.554931, 0, 2.1238575, -3.7274456, 3.1374888, 36.241707)
+cast_shadow = 0
+gi_lightmap_scale = 0
+mesh = SubResource("BoxMesh_hiqwa")
+Skeleton = null
+script = ExtResource("6_pkg7o")
+texture = ExtResource("13_2o6r5")
+modulate = Color(0.2520276, 0.25202766, 0.25202763, 1)
+albedo_mix = 0.2
+fade_start = 0.44
+fade_end = 1.0
+metadata/_custom_type_script = "uid://feckn7f3pmud"
+
 [node name="desk" parent="." instance=ExtResource("14_70uel")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.5741434, 10.633667, 32.186836)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="desk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3404274, 1.0928974, 0.056365013)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30517197, 1.014904, 0.056365013)
 light_color = Color(0.39778644, 0.6244334, 0.4484111, 1)
-light_energy = 0.505
+light_energy = 1.365
+light_bake_mode = 1
+omni_range = 10.711136
 
 [node name="AntiFallInHole" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.189254, 10.077022, 41.33598)
@@ -192,3 +219,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.189254, 10.077022, 41.3359
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AntiFallInHole"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4553094, 1.9827604, -0.16113663)
 shape = SubResource("BoxShape3D_70uel")
+
+[node name="Lightrod" parent="." instance=ExtResource("15_hiqwa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.619013, 7.6783695, 36.05863)
+
+[node name="Lightrod2" parent="." instance=ExtResource("15_hiqwa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3809872, 7.6783695, 36.05863)
+
+[node name="Lightrod3" parent="." instance=ExtResource("15_hiqwa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.619013, 7.6783695, 30.058632)
+
+[node name="Lightrod4" parent="." instance=ExtResource("15_hiqwa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3809872, 7.6783695, 30.058632)
+
+[node name="Lightrod5" parent="." instance=ExtResource("15_hiqwa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.619013, 7.6783695, 24.058632)
+
+[node name="Lightrod6" parent="." instance=ExtResource("15_hiqwa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3809872, 7.6783695, 24.058632)

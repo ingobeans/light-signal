@@ -11,7 +11,6 @@ extends CharacterBody3D
 var jumping: bool = false
 var mouse_captured: bool = false
 
-
 var vertical := Vector3(0, 1, 0)
 var horizontal := Vector3(1, 0, 1)
 

@@ -2,7 +2,6 @@ extends Node3D
 
 @onready var visibility = $MovingElevator/VisibleOnScreenNotifier3D
 @onready var ui = self.get_node("../UI")
-@onready var player = self.get_node("../Player")
 @onready var animation_player = $AnimationPlayer
 @onready var audio_player = $MovingElevator/AudioStreamPlayer3D
 @onready var area = $MovingElevator/Area3D

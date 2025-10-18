@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwqn8mr4o26uw"]
+
+[ext_resource type="PackedScene" uid="uid://oduuilv6yrak" path="res://assets/lightrod.blend" id="1_4fvne"]
+
+[node name="Lightrod" type="Node3D"]
+
+[node name="lightrod" parent="." instance=ExtResource("1_4fvne")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8970137, 0)
+light_bake_mode = 1
+omni_range = 6.537834
