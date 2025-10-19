@@ -32,7 +32,7 @@ var lerping_towards_ladder = false
 var lerping_towards_ladder_end = false
 var climb_amt = 0
 
-var has_key = true
+var has_key = false
 
 @onready var camera: Camera3D = $Camera3D
 

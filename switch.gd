@@ -39,6 +39,7 @@ func _process(delta: float) -> void:
 		
 	
 	if showing and Input.is_action_just_pressed("interact"):
+		$AudioStreamPlayer3D.play()
 		opened = true
 		animation.play("pull")
 		ui.hide_message()

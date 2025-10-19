@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=4 uid="uid://12om00diey6h"]
+[gd_scene load_steps=19 format=4 uid="uid://12om00diey6h"]
 
 [ext_resource type="PackedScene" uid="uid://bcit2i1nh7v5n" path="res://assets/switch.blend" id="1_it01i"]
 [ext_resource type="Texture2D" uid="uid://e3bfwg728lwl" path="res://assets/dark_metal.png" id="2_8307x"]
 [ext_resource type="Material" uid="uid://3qxcbgvluyc8" path="res://materials/light.tres" id="2_rlq62"]
 [ext_resource type="Script" uid="uid://gp88roj7j1uu" path="res://switch.gd" id="3_ds62l"]
+[ext_resource type="AudioStream" uid="uid://ili00a558n1y" path="res://assets/lever_pull.mp3" id="5_1nx7o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ds62l"]
 resource_name = "DarkMetal"
@@ -196,3 +197,6 @@ aabb = AABB(-0.115801916, -0.06883812, -0.04916577, 0.23160383, 0.13767624, 0.09
 libraries = {
 &"": SubResource("AnimationLibrary_1nx7o")
 }
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Switch" index="3"]
+stream = ExtResource("5_1nx7o")
