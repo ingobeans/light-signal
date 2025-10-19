@@ -18,6 +18,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var move_dir: Vector2 
 var look_dir: Vector2 
+var wish_dir: Vector3
 
 var walk_vel: Vector3 
 var grav_vel: Vector3 
@@ -62,6 +63,7 @@ func _walk(delta: float) -> Vector3:
 	move_dir = Input.get_vector("walk left", "walk right", "walk forwards", "walk backwards")
 	var _forward: Vector3 = camera.global_transform.basis * Vector3(move_dir.x, 0, move_dir.y)
 	var walk_dir: Vector3 = Vector3(_forward.x, 0, _forward.z).normalized()
+	wish_dir = walk_dir
 	walk_vel = walk_vel.move_toward(walk_dir * speed * move_dir.length(), acceleration * delta)
 	return walk_vel
 
@@ -79,7 +81,6 @@ func _jump(delta: float) -> Vector3:
 
 # from: https://github.com/kelpysama/Godot-Stair-Step-Demo/blob/main/Scripts/player_character.gd
 func stair_step_up():
-	var wish_dir = Vector3(move_dir.x,0,-move_dir.y)
 	if wish_dir == Vector3.ZERO:
 		return
 
@@ -91,6 +92,7 @@ func stair_step_up():
 	body_test_params.from = self.global_transform		
 	body_test_params.motion = distance
 	if !PhysicsServer3D.body_test_motion(self.get_rid(), body_test_params, body_test_result):
+		print("1")
 		return
 	
 	var remainder = body_test_result.get_remainder()
@@ -124,12 +126,14 @@ func stair_step_up():
 	body_test_params.motion = MAX_STEP_UP * -vertical
 	
 	if !PhysicsServer3D.body_test_motion(self.get_rid(), body_test_params, body_test_result):
+		print("2")
 		return
 
 	test_transform = test_transform.translated(body_test_result.get_travel())
 	
 	var surface_normal = body_test_result.get_collision_normal()
 	if (snappedf(surface_normal.angle_to(vertical), 0.001) > floor_max_angle):
+		print("3")
 		return
 
 	var global_pos = global_position
