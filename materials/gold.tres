@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://1ystlqetd2px"]
+
+[ext_resource type="Texture2D" uid="uid://d1bqv0dg3wp40" path="res://assets/gold.png" id="1_23ncm"]
+
+[resource]
+albedo_texture = ExtResource("1_23ncm")
+metallic = 0.25
+metallic_specular = 1.0
+roughness = 0.26
