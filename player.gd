@@ -92,7 +92,6 @@ func stair_step_up():
 	body_test_params.from = self.global_transform		
 	body_test_params.motion = distance
 	if !PhysicsServer3D.body_test_motion(self.get_rid(), body_test_params, body_test_result):
-		print("1")
 		return
 	
 	var remainder = body_test_result.get_remainder()
@@ -126,14 +125,12 @@ func stair_step_up():
 	body_test_params.motion = MAX_STEP_UP * -vertical
 	
 	if !PhysicsServer3D.body_test_motion(self.get_rid(), body_test_params, body_test_result):
-		print("2")
 		return
 
 	test_transform = test_transform.translated(body_test_result.get_travel())
 	
 	var surface_normal = body_test_result.get_collision_normal()
 	if (snappedf(surface_normal.angle_to(vertical), 0.001) > floor_max_angle):
-		print("3")
 		return
 
 	var global_pos = global_position
