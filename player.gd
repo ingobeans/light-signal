@@ -24,18 +24,65 @@ var walk_vel: Vector3
 var grav_vel: Vector3 
 var jump_vel: Vector3 
 
-var has_key = false
+@onready var ladder_climb_pos = self.get_node("../LadderClimbPos")
+@onready var ladder_climb_end_pos = self.get_node("../LadderEndPos")
+
+var climbing = false
+var lerping_towards_ladder = false
+var lerping_towards_ladder_end = false
+var climb_amt = 0
+
+var has_key = true
 
 @onready var camera: Camera3D = $Camera3D
+
+func start_climb():
+	climbing = true
+	lerping_towards_ladder = true
 
 func _ready() -> void:
 	capture_mouse()
 
-func _process(_delta: float) -> void:
+func lerp_towards(spot: Node3D, delta: float)->bool:
+	global_position = global_position.move_toward(spot.global_position, 0.25 * delta)
+	global_position = global_position.lerp(spot.global_position, 3 * delta)
+	var delta_pos = global_position - spot.global_position
+	
+	camera.global_rotation = camera.global_rotation.move_toward(spot.global_rotation, 0.25 * delta)
+	camera.global_rotation = camera.global_rotation.lerp(spot.global_rotation, 3 * delta)
+	var delta_angle = camera.global_rotation - spot.global_rotation
+	
+	if delta_pos.length() <= 0.01 and delta_angle.length() < 0.01:
+		global_position = spot.global_position
+		camera.global_rotation = spot.global_rotation
+		return true
+	return false
+	
+
+func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("release"):
 		release_mouse()
+	
+	if lerping_towards_ladder:
+		if lerp_towards(ladder_climb_pos,delta):
+			lerping_towards_ladder = false
+	elif lerping_towards_ladder_end:
+		if lerp_towards(ladder_climb_end_pos,delta/2.0):
+			lerping_towards_ladder_end = false
+			climbing = false
+	elif climbing:
+		var axis = Input.get_axis("walk backwards","walk forwards")
+		if global_position.y <= ladder_climb_pos.global_position.y:
+			axis = max(axis,0)
+		climb_amt += delta * axis
+		position.y += axis * delta * speed / 4.0 * max(2*sin(2*PI / 1 * climb_amt)+1.0,0)
+		if global_position.y >= 30.5:
+			lerping_towards_ladder_end = true
+		
 
 func _unhandled_input(event: InputEvent) -> void:
+	if climbing:
+		return
 	if event is InputEventMouseMotion:
 		look_dir = event.relative * 0.001
 		if mouse_captured: _rotate_camera()
@@ -43,6 +90,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		capture_mouse()
 
 func _physics_process(delta: float) -> void:
+	if climbing:
+		return
 	if Input.is_action_just_pressed("jump"): jumping = true
 	velocity = _walk(delta) + _gravity(delta) + _jump(delta)
 	if jump_vel.length() <= 0.0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cy2wl3j46mb38"]
+[gd_scene load_steps=39 format=3 uid="uid://cy2wl3j46mb38"]
 
 [ext_resource type="Material" uid="uid://dgyhn0a0mrg1k" path="res://materials/water.tres" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://dthw12hveqhf0" path="res://assets/terrain.blend" id="1_ic0uy"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bkgo7roekjh08" path="res://assets/lighthouse.blend" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://cdfprdecnhm28" path="res://ui.tscn" id="10_wse8f"]
 [ext_resource type="PackedScene" uid="uid://dta6hkxb0rjrm" path="res://assets/boat.blend" id="11_ic0uy"]
+[ext_resource type="Script" uid="uid://sjwq460nfyht" path="res://climb_ladder.gd" id="12_il2jm"]
 [ext_resource type="PackedScene" uid="uid://du2gy7wd3tsj" path="res://elevator.tscn" id="12_k3n1d"]
 [ext_resource type="Texture2D" uid="uid://dvbwfoga1fv0b" path="res://assets/puddle.png" id="13_2o6r5"]
 [ext_resource type="PackedScene" uid="uid://dpeb8gsl3wykv" path="res://assets/desk.blend" id="14_70uel"]
@@ -53,7 +54,7 @@ size = Vector3(5000, 50, 5000)
 render_priority = 0
 shader = ExtResource("4_dwbse")
 shader_parameter/albedo = ExtResource("5_dwbse")
-shader_parameter/modulate = Color(0.21333516, 0.25707933, 0.27345204, 1)
+shader_parameter/modulate = Color(0.34083563, 0.40633854, 0.42820787, 1)
 shader_parameter/albedo_mix = 1.0
 shader_parameter/scale_mod = Vector3(0.5, 0.5, 0.5)
 shader_parameter/cube_half_size = Vector3(1, 1, 1)
@@ -108,6 +109,9 @@ size = Vector3(1.5291748, 2.8739014, 0.8102417)
 [sub_resource type="PlaneMesh" id="PlaneMesh_ic0uy"]
 material = ExtResource("8_ioo17")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wukud"]
+size = Vector3(0.8422241, 2.8739014, 0.93258667)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70uel"]
 render_priority = 0
 shader = ExtResource("4_dwbse")
@@ -156,7 +160,7 @@ sky_mode = 1
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8977452, 0.21345139, 0.3853467, 0.44046068, 0.42119384, 0.79283667, 0.006926508, 0.8814953, -0.4721417, 0, 0, 0)
-light_energy = 0.05
+light_energy = 0.065
 light_specular = 0.0
 shadow_enabled = true
 
@@ -165,14 +169,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22.815, 0)
 mesh = SubResource("BoxMesh_fj7yv")
 
 [node name="DecalCompatibility" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, -2.4789138, 12.986398, -2.085691)
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, -2.824678, 12.87104, -2.6412807)
 cast_shadow = 0
 gi_lightmap_scale = 0
 mesh = SubResource("BoxMesh_ioo17")
 Skeleton = null
 script = ExtResource("6_pkg7o")
 texture = ExtResource("5_dwbse")
-modulate = Color(0.21333516, 0.25707933, 0.27345204, 1)
+modulate = Color(0.34083563, 0.40633854, 0.42820787, 1)
 enable_fade = false
 metadata/_custom_type_script = "uid://feckn7f3pmud"
 
@@ -209,6 +213,9 @@ shape = SubResource("BoxShape3D_k3n1d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6780317, 0, -0.3496089)
 aabb = AABB(-0.24833983, -1, -0.27907622, 0.49667966, 2, 0.55815244)
 
+[node name="Player2" parent="." instance=ExtResource("7_pkg7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.144865, 15.1744585, -8.348438)
+
 [node name="Player" parent="." instance=ExtResource("7_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.800627, 3.263107, -13.230761)
 
@@ -216,6 +223,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.800627, 3.263107, -13.2307
 transform = Transform3D(47.57735, 25.090624, 14.095178, -28.778698, 41.480175, 23.302347, 0, -27.23368, 48.478287, 183.50224, 435.77383, -238.20702)
 mesh = SubResource("PlaneMesh_ic0uy")
 skeleton = NodePath("")
+
+[node name="LadderClimbPos" type="Node3D" parent="."]
+transform = Transform3D(-0.7325429, -0.6355077, -0.24394856, 0, 0.35836798, -0.9335804, 0.68072087, -0.6838877, -0.2625199, 1.104, 13.617, -1.482)
+
+[node name="LadderEndPos" type="Node3D" parent="."]
+transform = Transform3D(-0.7325429, 0.14245938, -0.66564715, 0, 0.97785634, 0.20927726, 0.68072087, 0.15330458, -0.7163217, 2.0804777, 32.034435, -0.43118516)
+
+[node name="ClimbLadder" type="Area3D" parent="."]
+transform = Transform3D(0.6627246, 0, -0.7488632, 0, 1, 0, 0.7488632, 0, 0.6627246, 1.3223265, 13.516105, -1.5214264)
+collision_mask = 2
+script = ExtResource("12_il2jm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClimbLadder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6080626, 0.6815796, 0.17640686)
+shape = SubResource("BoxShape3D_wukud")
 
 [node name="lighthouse" parent="." instance=ExtResource("9_ioo17")]
 transform = Transform3D(-0.7298761, 0, -0.68357944, 0, 1, 0, 0.68357944, 0, -0.7298761, 2.0926018, 13.769504, -0.40401793)
