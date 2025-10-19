@@ -24,6 +24,8 @@ var walk_vel: Vector3
 var grav_vel: Vector3 
 var jump_vel: Vector3 
 
+var has_key = false
+
 @onready var camera: Camera3D = $Camera3D
 
 func _ready() -> void:

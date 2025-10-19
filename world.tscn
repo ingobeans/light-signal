@@ -1,14 +1,16 @@
-[gd_scene load_steps=30 format=3 uid="uid://cy2wl3j46mb38"]
+[gd_scene load_steps=37 format=3 uid="uid://cy2wl3j46mb38"]
 
 [ext_resource type="Material" uid="uid://dgyhn0a0mrg1k" path="res://materials/water.tres" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://dthw12hveqhf0" path="res://assets/terrain.blend" id="1_ic0uy"]
 [ext_resource type="Shader" uid="uid://foqf6idimvb0" path="res://addons/decal_compatibility/decal.gdshader" id="4_dwbse"]
 [ext_resource type="Texture2D" uid="uid://c6k4l6xto7yhp" path="res://assets/light.png" id="5_dwbse"]
 [ext_resource type="Script" uid="uid://feckn7f3pmud" path="res://addons/decal_compatibility/decal_compatibility.gd" id="6_pkg7o"]
+[ext_resource type="PackedScene" uid="uid://bv07tkiry2r51" path="res://assets/door.blend" id="7_26xuy"]
 [ext_resource type="PackedScene" uid="uid://bcwiimrhjd786" path="res://player.tscn" id="7_pkg7o"]
+[ext_resource type="Script" uid="uid://ci4i2e3x2wugo" path="res://door_locked.gd" id="8_bc84e"]
 [ext_resource type="Material" uid="uid://ck5pls7d355lb" path="res://materials/moon.tres" id="8_ioo17"]
+[ext_resource type="Script" uid="uid://gqt5y0ggdwi2" path="res://door_unlockable.gd" id="9_bc84e"]
 [ext_resource type="PackedScene" uid="uid://bkgo7roekjh08" path="res://assets/lighthouse.blend" id="9_ioo17"]
-[ext_resource type="Script" uid="uid://cd3k8v7x72efj" path="res://message_area.gd" id="10_ic0uy"]
 [ext_resource type="PackedScene" uid="uid://cdfprdecnhm28" path="res://ui.tscn" id="10_wse8f"]
 [ext_resource type="PackedScene" uid="uid://dta6hkxb0rjrm" path="res://assets/boat.blend" id="11_ic0uy"]
 [ext_resource type="PackedScene" uid="uid://du2gy7wd3tsj" path="res://elevator.tscn" id="12_k3n1d"]
@@ -18,6 +20,8 @@
 [ext_resource type="LightmapGIData" uid="uid://bedbh1u81fwmk" path="res://world.lmbake" id="16_2u3nc"]
 [ext_resource type="PackedScene" uid="uid://djwt7g8d4xb1t" path="res://assets/keydesk.blend" id="17_udxuc"]
 [ext_resource type="PackedScene" uid="uid://cmvkj0mg187av" path="res://assets/key.blend" id="18_ikiii"]
+[ext_resource type="Script" uid="uid://ca3els4b1g6wf" path="res://key_pickup.gd" id="19_cbp6q"]
+[ext_resource type="PackedScene" uid="uid://cg1jqxu77mhnc" path="res://assets/lantern.blend" id="22_wukud"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
 sky_top_color = Color(0.11526693, 0.14677623, 0.18874761, 1)
@@ -62,11 +66,47 @@ shader_parameter/fade_power = 1.0
 material = SubResource("ShaderMaterial_gbfbk")
 size = Vector3(2, 2, 2)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ic0uy"]
-material = ExtResource("8_ioo17")
+[sub_resource type="Animation" id="Animation_26xuy"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -2.3893557, 0), Vector3(0, -3.8920841, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bc84e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.3893557, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wukud"]
+_data = {
+&"RESET": SubResource("Animation_bc84e"),
+&"open": SubResource("Animation_26xuy")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k3n1d"]
-size = Vector3(1.5291748, 2.8739014, 1.2304688)
+size = Vector3(1.5291748, 2.8739014, 0.8102417)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ic0uy"]
+material = ExtResource("8_ioo17")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70uel"]
 render_priority = 0
@@ -136,8 +176,38 @@ modulate = Color(0.21333516, 0.25707933, 0.27345204, 1)
 enable_fade = false
 metadata/_custom_type_script = "uid://feckn7f3pmud"
 
-[node name="Player2" parent="." instance=ExtResource("7_pkg7o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7260542, 13.325123, 27.348488)
+[node name="Door" type="AnimationPlayer" parent="."]
+root_node = NodePath("door")
+libraries = {
+&"": SubResource("AnimationLibrary_wukud")
+}
+autoplay = "RESET"
+
+[node name="door" parent="Door" instance=ExtResource("7_26xuy")]
+transform = Transform3D(-0.7301622, 0, -0.68327385, 0, 1, 0, 0.68327385, 0, -0.7301622, -0.67593354, 13.738984, -2.4998178)
+
+[node name="DoorLocked" type="Area3D" parent="Door"]
+transform = Transform3D(0.6627246, 0, -0.7488632, 0, 1, 0, 0.7488632, 0, 0.6627246, -0.6395271, 13.516105, -3.514761)
+collision_mask = 2
+script = ExtResource("8_bc84e")
+text = "the door is locked."
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/DoorLocked"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2645874, 0.6815796, 0.11523414)
+shape = SubResource("BoxShape3D_k3n1d")
+
+[node name="DoorUnlockable" type="Area3D" parent="Door"]
+transform = Transform3D(0.6627246, 0, -0.7488632, 0, 1, 0, 0.7488632, 0, 0.6627246, -0.6395271, 13.516105, -3.514761)
+collision_mask = 2
+script = ExtResource("9_bc84e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/DoorUnlockable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2645874, 0.6815796, 0.11523414)
+shape = SubResource("BoxShape3D_k3n1d")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="Door/DoorUnlockable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6780317, 0, -0.3496089)
+aabb = AABB(-0.24833983, -1, -0.27907622, 0.49667966, 2, 0.55815244)
 
 [node name="Player" parent="." instance=ExtResource("7_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.800627, 3.263107, -13.230761)
@@ -147,25 +217,10 @@ transform = Transform3D(47.57735, 25.090624, 14.095178, -28.778698, 41.480175, 2
 mesh = SubResource("PlaneMesh_ic0uy")
 skeleton = NodePath("")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3458986, 14.337474, -9.274997)
-visible = false
-omni_range = 11.797906
-
 [node name="lighthouse" parent="." instance=ExtResource("9_ioo17")]
 transform = Transform3D(-0.7298761, 0, -0.68357944, 0, 1, 0, 0.68357944, 0, -0.7298761, 2.0926018, 13.769504, -0.40401793)
 
 [node name="UI" parent="." instance=ExtResource("10_wse8f")]
-
-[node name="DoorLocked" type="Area3D" parent="."]
-transform = Transform3D(0.6627246, 0, -0.7488632, 0, 1, 0, 0.7488632, 0, 0.6627246, -0.6395271, 13.516105, -3.514761)
-collision_mask = 2
-script = ExtResource("10_ic0uy")
-text = "the door is locked"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorLocked"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2645874, 0.6815796, 0.11523414)
-shape = SubResource("BoxShape3D_k3n1d")
 
 [node name="boat" parent="." instance=ExtResource("11_ic0uy")]
 transform = Transform3D(0.6920038, 0, 0.24480674, 0, 0.73402965, 0, -0.24480674, 0, 0.6920038, 25.899847, 2.6761436, -11.033203)
@@ -235,8 +290,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.619013, 7.6783695, 24.0586
 [node name="Lightrod6" parent="." instance=ExtResource("15_hiqwa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3809872, 7.6783695, 24.058632)
 
-[node name="key" parent="." instance=ExtResource("18_ikiii")]
-transform = Transform3D(1.5154488, 0, -1.3051493, 0, 2, 0, 1.3051493, 0, 1.5154488, -1.7622147, 3.9836993, 23.200712)
-
 [node name="keydesk" parent="." instance=ExtResource("17_udxuc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5311706, 3.116981, 22.844055)
+
+[node name="KeyPickup" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9640282, 3.8436527, 23.761497)
+collision_mask = 2
+script = ExtResource("19_cbp6q")
+
+[node name="key" parent="KeyPickup" instance=ExtResource("18_ikiii")]
+transform = Transform3D(1.5154488, 0, -1.3051493, 0, 2, 0, 1.3051493, 0, 1.5154488, 0.20181358, 0.1400466, -0.5607853)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KeyPickup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2645874, 0.6815796, -0.09487915)
+shape = SubResource("BoxShape3D_k3n1d")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="KeyPickup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22680342, 0.14592743, -0.59098625)
+aabb = AABB(-0.05254443, -0.05323768, -0.056387026, 0.10508886, 0.10647536, 0.11277405)
+
+[node name="lantern" parent="." instance=ExtResource("22_wukud")]
+transform = Transform3D(0.18867505, -0.63950604, 1.2878276, 1.4084171, 0.3437407, -0.035648014, -0.2895345, 1.255365, 0.66580474, -1.917234, 11.672909, -7.716192)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lantern"]
+transform = Transform3D(-0.63742703, 0.6008962, -0.4822972, -0.5396804, 0.09857242, 0.8360792, 0.549938, 0.7932258, 0.26145917, 0.029898643, -0.074317455, -0.056643486)
+light_color = Color(0.7294118, 0.4392157, 0, 1)
+light_energy = 3.144
+light_size = 0.351
+omni_range = 11.797906

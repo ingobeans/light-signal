@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bkgo7roekjh08"
-path="res://.godot/imported/lighthouse.blend-5ce2a82bc291d9b95479edaee2fc26bd.scn"
+uid="uid://cg1jqxu77mhnc"
+path="res://.godot/imported/lantern.blend-86b349df99cd46baa2d687d2a6c655e7.scn"
 
 [deps]
 
-source_file="res://assets/lighthouse.blend"
-dest_files=["res://.godot/imported/lighthouse.blend-5ce2a82bc291d9b95479edaee2fc26bd.scn"]
+source_file="res://assets/lantern.blend"
+dest_files=["res://.godot/imported/lantern.blend-86b349df99cd46baa2d687d2a6c655e7.scn"]
 
 [params]
 
@@ -24,7 +24,7 @@ nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=2
+meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
@@ -39,37 +39,10 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"Door": {
+"Material": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://materials/door.tres",
-"use_external/path": "uid://dh30dtleudw7o"
-},
-"Railing": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://materials/railing.tres",
-"use_external/path": "uid://byegimafwq3ng"
-},
-"Windows": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://materials/windows.tres",
-"use_external/path": "uid://bhfyn03piu47a"
-}
-},
-"nodes": {
-"PATH:Cylinder": {
-"import/skip_import": true
-},
-"PATH:Cylinder_001": {
-"import/skip_import": true
-},
-"PATH:Door": {
-"import/skip_import": true
-},
-"PATH:Hall": {
-"import/skip_import": true
-},
-"PATH:Hall_002": {
-"import/skip_import": true
+"use_external/fallback_path": "res://materials/lantern.tres",
+"use_external/path": "uid://b3wxldyu18kca"
 }
 }
 }
