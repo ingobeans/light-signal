@@ -24,3 +24,9 @@ func _process(delta: float) -> void:
 			environment.environment.tonemap_white = 13.9 ** -(counter-2.0)
 			if counter > 3.0:
 				ui.set_flashbang_amount(counter-3.0)
+	
+	if counter >= 4.0:
+		environment.environment.tonemap_exposure = 1.0
+		environment.environment.tonemap_white = 1.0
+		gamestate.has_completed = true
+		get_tree().reload_current_scene()

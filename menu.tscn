@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkje7s5bnp85e"]
+
+[ext_resource type="Script" uid="uid://c2vw630g4xxgk" path="res://volume.gd" id="1_lti8b"]
+[ext_resource type="Script" uid="uid://37ttb415rmtl" path="res://play_button.gd" id="1_mae5d"]
+[ext_resource type="AudioStream" uid="uid://d2isexkjoad7o" path="res://bell.mp3" id="2_ouk20"]
+
+[sub_resource type="SystemFont" id="SystemFont_ouk20"]
+font_names = PackedStringArray("DejaVu Serif")
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.4120001
+anchor_top = -1.5530001
+anchor_right = 2.5730002
+anchor_bottom = 2.177
+offset_left = -182.37598
+offset_top = 97.344055
+offset_right = 274.9038
+offset_bottom = 501.30396
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 51.0
+offset_right = 1141.0
+offset_bottom = 264.0
+scale = Vector2(0.75526184, 0.75526184)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_ouk20")
+theme_override_font_sizes/font_size = 131
+text = "light signal"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 288.00003
+offset_right = 1276.0
+offset_bottom = 501.00003
+scale = Vector2(0.13711433, 0.13711433)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_ouk20")
+theme_override_font_sizes/font_size = 131
+text = "volume"
+
+[node name="PlayButton" type="Button" parent="." node_paths=PackedStringArray("fade")]
+layout_mode = 0
+offset_left = 445.0
+offset_top = 348.0
+offset_right = 680.0
+offset_bottom = 384.0
+theme_override_fonts/font = SubResource("SystemFont_ouk20")
+text = "play."
+script = ExtResource("1_mae5d")
+fade = NodePath("../ColorRect2")
+
+[node name="Volume" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 497.0
+offset_top = 283.0
+offset_right = 733.0
+offset_bottom = 318.0
+value = 50.0
+script = ExtResource("1_lti8b")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Volume"]
+stream = ExtResource("2_ouk20")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.4120001
+anchor_top = -1.5530001
+anchor_right = 2.5730002
+anchor_bottom = 2.177
+offset_left = -182.37598
+offset_top = 97.344055
+offset_right = 274.9038
+offset_bottom = 501.30396
+mouse_filter = 1

@@ -90,7 +90,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		capture_mouse()
 
 func _physics_process(delta: float) -> void:
-	if climbing:
+	if climbing or gamestate.has_completed:
 		return
 	if Input.is_action_just_pressed("jump"): jumping = true
 	velocity = _walk(delta) + _gravity(delta) + _jump(delta)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cy2wl3j46mb38"]
+[gd_scene load_steps=44 format=3 uid="uid://cy2wl3j46mb38"]
 
 [ext_resource type="Material" uid="uid://dgyhn0a0mrg1k" path="res://materials/water.tres" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://dthw12hveqhf0" path="res://assets/terrain.blend" id="1_ic0uy"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://cg1jqxu77mhnc" path="res://assets/lantern.blend" id="22_wukud"]
 [ext_resource type="Material" uid="uid://bbprqjg45m7ra" path="res://materials/terrain.tres" id="24_bo7i5"]
 [ext_resource type="PackedScene" uid="uid://12om00diey6h" path="res://switch.tscn" id="25_mc2jv"]
+[ext_resource type="AudioStream" uid="uid://gka8y5qgri2p" path="res://wind.mp3" id="27_4h6ng"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
 sky_top_color = Color(0.11526693, 0.14677623, 0.18874761, 1)
@@ -222,9 +223,6 @@ shape = SubResource("BoxShape3D_k3n1d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6780317, 0, -0.3496089)
 aabb = AABB(-0.24833983, -1, -0.27907622, 0.49667966, 2, 0.55815244)
 
-[node name="Player2" parent="." instance=ExtResource("7_pkg7o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51907444, 32.25579, -0.4781103)
-
 [node name="Player" parent="." instance=ExtResource("7_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.800627, 3.263107, -13.230761)
 
@@ -370,3 +368,8 @@ omni_range = 11.797906
 
 [node name="switch2" parent="." instance=ExtResource("25_mc2jv")]
 transform = Transform3D(0.4025059, 0, 1.1321183, 0, 1.2015419, 0, -1.1321183, 0, 0.4025059, 1.7304478, 31.034012, 0.23321497)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("27_4h6ng")
+volume_db = -5.89
+autoplay = true

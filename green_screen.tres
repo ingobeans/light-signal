@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://csjwyl2t4s1ue"]
+
+[ext_resource type="Shader" uid="uid://cf74wkxilec84" path="res://green_screen.gdshader" id="1_ueq1i"]
+
+[resource]
+shader = ExtResource("1_ueq1i")
+shader_parameter/transparent_color = Color(0, 0.6901961, 0.25490198, 1)
+shader_parameter/pickup_range = 0.3
+shader_parameter/fade_amount = 0.5

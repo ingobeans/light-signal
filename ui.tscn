@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdfprdecnhm28"]
+[gd_scene load_steps=4 format=3 uid="uid://cdfprdecnhm28"]
 
 [ext_resource type="Script" uid="uid://6pqkqbs1q31h" path="res://ui.gd" id="1_fyqef"]
+[ext_resource type="Material" uid="uid://csjwyl2t4s1ue" path="res://green_screen.tres" id="2_27fn8"]
+[ext_resource type="VideoStream" uid="uid://bp0u121skik23" path="res://eyeos.ogv" id="2_m6e0p"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -9,7 +11,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 script = ExtResource("1_fyqef")
 
 [node name="Dialogue" type="Control" parent="."]
@@ -70,3 +71,15 @@ offset_bottom = -6939.984
 scale = Vector2(8.464635, 13.872674)
 mouse_filter = 1
 color = Color(1, 1, 1, 0)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+material = ExtResource("2_27fn8")
+layout_mode = 0
+offset_left = -419.0
+offset_top = -244.0
+offset_right = 1501.0
+offset_bottom = 836.0
+scale = Vector2(1.055868, 1.0571944)
+mouse_filter = 1
+stream = ExtResource("2_m6e0p")
+speed_scale = 0.5

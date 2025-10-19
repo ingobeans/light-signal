@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="light signal"
-run/main_scene="uid://cy2wl3j46mb38"
+run/main_scene="uid://dkje7s5bnp85e"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+gamestate="*res://gamestate.gd"
 
 [editor_plugins]
 
