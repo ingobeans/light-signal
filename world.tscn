@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cy2wl3j46mb38"]
+[gd_scene load_steps=45 format=3 uid="uid://cy2wl3j46mb38"]
 
 [ext_resource type="Material" uid="uid://dgyhn0a0mrg1k" path="res://materials/water.tres" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://dthw12hveqhf0" path="res://assets/terrain.blend" id="1_ic0uy"]
@@ -27,6 +27,9 @@
 [ext_resource type="Material" uid="uid://bbprqjg45m7ra" path="res://materials/terrain.tres" id="24_bo7i5"]
 [ext_resource type="PackedScene" uid="uid://12om00diey6h" path="res://switch.tscn" id="25_mc2jv"]
 [ext_resource type="AudioStream" uid="uid://gka8y5qgri2p" path="res://wind.mp3" id="27_4h6ng"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4h6ng"]
+size = Vector3(250, 1, 250)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
 sky_top_color = Color(0.11526693, 0.14677623, 0.18874761, 1)
@@ -144,6 +147,12 @@ material = ExtResource("24_bo7i5")
 size = Vector2(0.005, 0.765)
 
 [node name="World" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7876005, 0)
+shape = SubResource("BoxShape3D_4h6ng")
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
 quality = 0

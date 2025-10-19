@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 gamestate="*res://gamestate.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/decal_compatibility/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
