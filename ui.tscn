@@ -55,3 +55,18 @@ offset_top = -1.0
 offset_bottom = 0.019996643
 text = "the door is locked."
 horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.40600002
+anchor_top = -0.38700002
+anchor_right = 1.7620001
+anchor_bottom = 1.608
+offset_left = -7681.288
+offset_top = -6689.224
+offset_right = -8046.824
+offset_bottom = -6939.984
+scale = Vector2(8.464635, 13.872674)
+mouse_filter = 1
+color = Color(1, 1, 1, 0)
