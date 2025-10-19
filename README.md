@@ -12,6 +12,8 @@ you dont know where you are. you dont know who you are. there is a lighthouse. y
 
 this is a small horror-esque game i made for hackclub's siege! i made it in godot, and this is my first ever 3D game so that pretty cool!
 
+the game takes place on an island with a lighthouse, the goal being to use the lighthouse to signal for help.
+
 ## controls
 
 WASD for movement and mouse to look around.
