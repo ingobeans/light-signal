@@ -40,7 +40,13 @@ func start_climb():
 	climbing = true
 	lerping_towards_ladder = true
 
+func teleport(spot:Node3D):
+	global_position = spot.global_position
+	camera.global_rotation = spot.global_rotation
+
 func _ready() -> void:
+	var loadpoint = get_node("../PlayerLoadpoint")
+	teleport(loadpoint)
 	capture_mouse()
 
 func lerp_towards(spot: Node3D, delta: float)->bool:

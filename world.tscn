@@ -233,6 +233,12 @@ shape = SubResource("BoxShape3D_k3n1d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6780317, 0, -0.3496089)
 aabb = AABB(-0.24833983, -1, -0.27907622, 0.49667966, 2, 0.55815244)
 
+[node name="PlayerSpawnpoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.800627, 3.263107, -13.230761)
+
+[node name="PlayerLoadpoint" type="Node3D" parent="."]
+transform = Transform3D(-0.54358464, 0.494935, 0.67790484, -2.9802322e-08, 0.8076504, -0.58966154, -0.8393543, -0.32053104, -0.43902633, 25.800627, 3.263107, -13.230761)
+
 [node name="Player" parent="." instance=ExtResource("7_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.800627, 3.263107, -13.230761)
 
